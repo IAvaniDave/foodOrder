@@ -28,7 +28,7 @@
                             <p>North Indian, Chinese, Indian, Street Food, Continental</p>
                         </div>
                         <ul class="list px-0 d-flex">
-                            <li><span class="rating high"><i class="fa fa-star" aria-hidden="true"></i>
+                            <li><span class="rating <?php echo($row["rating"] <= 3.5 ? "law" : "high") ?>"><i class="fa fa-star" aria-hidden="true"></i>
                                     <?php echo $row["rating"]; ?></span>
                             </li>
                             <li class="time text-uppercase"><?php echo $row["delivery_time"]; ?> min</li>

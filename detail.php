@@ -54,6 +54,9 @@
             </div>
         </div>
     </div>
+    <?php 
+        $IsCartItems = 0;
+    ?>
     <div class="food_listing my-5">
         <div class="container">
             <div class="row">
@@ -75,44 +78,59 @@
                                 <p><?php echo $data['total']; ?> items</p>
                                 <?php } ?>
                             </div>
-                        <?php
-                            global $con;
+                            <?php
+                                global $con;
 
-                            $qry = "select * from items where restaurant_id=".$_GET["id"];
-                            $res = $con->query($qry);
-                            while ($row = mysqli_fetch_array($res)) { 
-                        ?>
-                            <div class="food_block">
-                                <span class="food_type icon_veg"></span>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="food_name mt-3  mb-2 d-flex">
-                                            <h4 class="item-name"><?php echo $row['name']; ?>
-                                            </h4>
-                                            <p class="pl-2 m-0 font-black"> (<?php echo $row['quantity']; ?> Gm)</p>
-                                        </div>
-                                        <p class="mb-0 price"><i class="fa fa-inr" aria-hidden="true"></i>
-                                            <?php echo $row['price']; ?></p>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="add_item">
-                                            <div class="quantity">
-                                                <input type='hidden' value='<?php echo $row['id']; ?>' class='item_id' name="item_id[]" />
-                                                <input type='hidden' value='<?php echo $row['price']; ?>'
-                                                    class='item_price' name="item_price[]" />
-                                                <input type='button' value='-' class='qtyminus' field='quantity' />
-                                                <input type='text' name='quantity[]' value='' class='qty' />
-                                                <input type='button' value='+' class='qtyplus' field='quantity' />
+                                $qry = "SELECT *,
+                                items.name as item,
+                                items.price as price,
+                                items.id as id
+                                FROM items
+                                LEFT JOIN carts ON items.id = carts.item_id
+                                WHERE items.restaurant_id=".$_GET["id"];
+                                $res = $con->query($qry);
+                                while ($row = mysqli_fetch_array($res)) { 
+                                    // echo "<pre>";print_r($row);
+                                    if(isset($row['item_id']) && isset($row['quantity']) && $row['item_id'] !== '' && $row['quantity'] !== '') {
+                                        $IsCartItems = 1;
+                                    }
+                            ?>
+                                <div class="food_block">
+                                    <span class="food_type icon_veg"></span>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="food_name mt-3  mb-2 d-flex">
+                                                <h4 class="item-name"><?php echo $row['name']; ?>
+                                                </h4>
+                                                <p class="pl-2 m-0 font-black"> (<?php echo $row['quantity']; ?> Gm)</p>
                                             </div>
-                                            <button class="add-btn" type="button">
-                                                ADD
-                                            </button>
+                                            <p class="mb-0 price"><i class="fa fa-inr" aria-hidden="true"></i>
+                                                <?php echo $row['price']; ?></p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="add_item <?php echo( (isset($row['item_id']) && isset($row['quantity'])) ? "show-quntity" : "111") ?>">
+                                                <div class="quantity">
+                                                    <input type='hidden' value='<?php echo $_GET["id"]; ?>' class='restaurant_id' name="restaurant_id" />
+                                                    <input type='hidden' value='<?php echo $row['id']; ?>' class='item_id' name="item_id[]" />
+                                                    <input type='hidden' value='<?php echo $row['price']; ?>'
+                                                        class='item_price' name="item_price[]" />
+                                                    <input type='button' value='-' class='qtyminus' field='quantity' />
+                                                    <?php if(isset($row['item_id']) && isset($row['quantity']) && $row['item_id'] !== '' && $row['quantity'] !== '') { ?>
+                                                        <input type='text' name='quantity[]' value='<?php echo($row['quantity']) ?>' class='qty' />
+                                                    <?php } else{ ?>
+                                                        <input type='text' name='quantity[]' value='' class='qty' />
+                                                    <?php } ?>
+                                                    <input type='button' value='+' class='qtyplus' field='quantity' />
+                                                </div>
+                                                <button class="add-btn" type="button">
+                                                    ADD
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php } ?>
-                            <div class="go-to-cart d-none">
+                            <?php } ?>
+                            <div class="go-to-cart <?php echo($IsCartItems ? 'd-block' : 'd-none') ?>">
                                 <button class="cart-btn food_btn" type="submit" name="addtocart">
                                     Go TO Cart
                                     <img src="images/btn_icon.png" class="btn-arrow">

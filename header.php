@@ -50,8 +50,11 @@
                 </div>
                 <?php } else { ?>
                 <div class="col-6">
-                    <div class="btn_group header">
-                        <p class="text_orenge"><strong><?php echo($_SESSION["name"]) ?></strong></p>
+                    <div class="btn_group header flex align-items-center">
+                        <a class="btn_login" href="cart.php">My Cart</a>
+                        <!-- <a class="btn_login" href="order.php">My Orders</a> -->
+                        <p class="text_orenge m-0 pl-2"><strong><?php echo($_SESSION["name"]) ?></strong></p>
+                        <a class="btn_login" href="logout.php">Logout</a>
                     </div>
                 </div>
 
