@@ -4,7 +4,6 @@
 ?>
 <div class="block_content mt-5">
     <?php
-    // echo"<pre>";print_r($_SESSION);exit;
       if (isset($_SESSION["msg"])) {
           echo $_SESSION["msg"];
           unset($_SESSION["msg"]);

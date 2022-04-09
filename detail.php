@@ -90,7 +90,6 @@
                                 WHERE items.restaurant_id=".$_GET["id"];
                                 $res = $con->query($qry);
                                 while ($row = mysqli_fetch_array($res)) { 
-                                    // echo "<pre>";print_r($row);
                                     if(isset($row['item_id']) && isset($row['quantity']) && $row['item_id'] !== '' && $row['quantity'] !== '') {
                                         $IsCartItems = 1;
                                     }
@@ -137,149 +136,8 @@
                                 </button>
                             </div>
                         </form>
-                        <!-- <div class="food_block">
-                            <span class="food_type icon_veg"></span>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="food_name mt-3  mb-2">
-                                        <h4 class="">Rajwadi Undhiyu (500 Gm)</h4>
-                                    </div>
-                                    <p class="mb-0 price"><i class="fa fa-inr" aria-hidden="true"></i> 59</p>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="add_item">
-                                        <div class="quantity">
-                                            <input type='button' value='-' class='qtyminus' field='quantity' />
-                                            <input type='text' name='quantity' value='1' class='qty' />
-                                            <input type='button' value='+' class='qtyplus' field='quantity' />
-                                        </div>
-                                        <button class="add-btn" type="button">
-                                            ADD
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="food_block">
-                            <span class="food_type icon_veg"></span>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="food_name mt-3  mb-2">
-                                        <h4 class="">Rajwadi Undhiyu (500 Gm)</h4>
-                                    </div>
-                                    <p class="mb-0 price"><i class="fa fa-inr" aria-hidden="true"></i> 59</p>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="add_item">
-                                        <div class="quantity">
-                                            <input type='button' value='-' class='qtyminus' field='quantity' />
-                                            <input type='text' name='quantity' value='1' class='qty' />
-                                            <input type='button' value='+' class='qtyplus' field='quantity' />
-                                        </div>
-                                        <button class="add-btn" type="button">
-                                            ADD
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="food_block">
-                            <span class="food_type icon_veg"></span>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="food_name mt-3  mb-2">
-                                        <h4 class="">Rajwadi Undhiyu (500 Gm)</h4>
-                                    </div>
-                                    <p class="mb-0 price"><i class="fa fa-inr" aria-hidden="true"></i> 59</p>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="add_item">
-                                        <div class="quantity">
-                                            <input type='button' value='-' class='qtyminus' field='quantity' />
-                                            <input type='text' name='quantity' value='1' class='qty' />
-                                            <input type='button' value='+' class='qtyplus' field='quantity' />
-                                        </div>
-                                        <button class="add-btn" type="button">
-                                            ADD
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="food_block">
-                            <span class="food_type icon_veg"></span>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="food_name mt-3  mb-2">
-                                        <h4 class="">Rajwadi Undhiyu (500 Gm)</h4>
-                                    </div>
-                                    <p class="mb-0 price"><i class="fa fa-inr" aria-hidden="true"></i> 59</p>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="add_item">
-                                        <div class="quantity">
-                                            <input type='button' value='-' class='qtyminus' field='quantity' />
-                                            <input type='text' name='quantity' value='1' class='qty' />
-                                            <input type='button' value='+' class='qtyplus' field='quantity' />
-                                        </div>
-                                        <button class="add-btn" type="button">
-                                            ADD
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
-                <!-- <div class="col-md-4">
-                    <div class="cart_block">
-                        <div class="cart_block_heading">
-                            <h6 class="m-0">Cart</h6>
-                            <span class="no_of_item">2 ITEMS</span>
-                        </div>
-                        <ul class="item_detil d-flex p-0">
-                            <li class="d-flex"><span class="food_type icon_veg"></span>
-                                <p class="food_name text-black m-0">Idli (2pc)</p>
-                            </li>
-                            <li>
-                                <div class="quantity d-flex position-relative">
-                                    <input type='hidden' value='' class='cart_item_id' />
-                                    <input type='button' value='-' class='qtyminus' field='quantity' />
-                                    <input type='text' name='quantity' value='1' class='qty' />
-                                    <input type='button' value='+' class='qtyplus' field='quantity' />
-                                </div>
-                            </li>
-                            <li>
-                                <p class="mb-0 text-black">
-                                    <i class="fa fa-inr" aria-hidden="true"></i>
-                                    <span class="food_price">59</span>
-                                </p>
-                            </li>
-                        </ul>
-                        <div class="cart_footer">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h5 class="mb-0">Subtotal</h5>
-                                    <span class="font-small">Extra charges may apply</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <h5 class="total-price text-right"><i class="fa fa-inr" aria-hidden="true"></i>
-                                        ₹ 1760</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="checkout.php" class="btn_checkout"> Checkout <span class="px-2">→</span></a>
-                    </div>
-                    <div class="cart_empaty">
-                        <div class="cart_block_heading">
-                            <h6 class="m-0">Cart Empty</h6>
-                        </div>
-                        <div class="img_block">
-                            <img src="images/Cart_empty.webp" class="w-100">
-                        </div>
-                        <p>Good food is always cooking! Go ahead, order some yummy items from the menu.</p>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>

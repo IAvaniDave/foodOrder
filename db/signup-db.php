@@ -28,13 +28,6 @@
            $_SESSION["msg"] = "<div style='color:red'>Query Failed</div>";
        }
       
-      
-       // if(empty($_SESSION['captcha_code'] ) || strcasecmp($_SESSION['captcha_code'], $_POST['captcha_code']) != 0){
-       // $_SESSION["msg"]="<span style='color:red'>The Validation code does not match!</span>";// Captcha verification is incorrect.
-       // 	}else{// Captcha verification is Correct. Final Code Execute here!
-       // 		$_SESSION["msg"]="<span style='color:green'>The Validation code has been matched.</span>";
-       // 	}
-      
        header("Location: index.php");
        exit;
    }
